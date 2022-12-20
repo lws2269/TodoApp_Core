@@ -11,6 +11,7 @@ import CoreData
 // singleton
 class CoreDataManager {
     static let shared = CoreDataManager()
+    
     private init () { }
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -58,5 +59,27 @@ class CoreDataManager {
             print(error)
         }
         return nil
+    }
+    
+    func create<T: NSManagedObject>(entity: T.Type, completion: (T) -> Void) {
+        let context = self.persistentContainer.viewContext
+        guard let entityDescription = NSEntityDescription.entity(forEntityName: T.self.description(), in: context) else { return }
+
+        guard let managedObject = NSManagedObject(entity: entityDescription, insertInto: context) as? T else { return }
+        
+        completion(managedObject)
+
+        self.saveContext()
+    }
+    
+    func update<T: NSManagedObject>(entity: T, completion: (T) -> Void){
+        completion(entity)
+        self.saveContext()
+    }
+    
+    func delete(entity: NSManagedObject) {
+        let context = self.persistentContainer.viewContext
+        context.delete(entity)
+        self.saveContext()
     }
 }

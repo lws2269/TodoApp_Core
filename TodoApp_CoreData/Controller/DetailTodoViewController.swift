@@ -142,26 +142,23 @@ class DetailTodoViewController: UIViewController {
     @IBAction func save(_ sender: Any) {
         if let todoItem {
             //update
-            todoItem.title = titleTextField.text
-            todoItem.priorityLevel = priorityLevel.rawValue
-            todoItem.date = datePicker.date
-            
-            appdelegate.saveContext()
+            CoreDataManager.shared.update(entity: todoItem) { entity in
+                entity.title = titleTextField.text
+                entity.priorityLevel = priorityLevel.rawValue
+                entity.date = datePicker.date
+            }
             
             delegate?.didFinishSave()
             dismiss(animated: true)
             return
         }
-        guard let entityDescription = NSEntityDescription.entity(forEntityName: "TodoList", in: context) else { return }
-
-        guard let managedObject = NSManagedObject(entity: entityDescription, insertInto: context) as? TodoList else { return }
         
-        managedObject.title = titleTextField.text
-        managedObject.priorityLevel = priorityLevel.rawValue
-        managedObject.date = datePicker.date
-        managedObject.id = UUID()
-        
-        appdelegate.saveContext()
+        CoreDataManager.shared.create(entity: TodoList.self) { entity in
+            entity.title = titleTextField.text
+            entity.priorityLevel = priorityLevel.rawValue
+            entity.date = datePicker.date
+            entity.id = UUID()
+        }
         
         delegate?.didFinishSave()
         dismiss(animated: true)
@@ -169,14 +166,11 @@ class DetailTodoViewController: UIViewController {
     
     @IBAction func deleteItem(_ sender: Any) {
         if let todoItem {
-            //delete
-            context.delete(todoItem)
-            appdelegate.saveContext()
-            
+            CoreDataManager.shared.delete(entity: todoItem)
+        
             delegate?.didFinishSave()
             dismiss(animated: true)
         }
     }
-    
 }
 
