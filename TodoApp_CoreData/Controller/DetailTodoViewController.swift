@@ -87,22 +87,23 @@ class DetailTodoViewController: UIViewController {
             let level = PriorityLevel(rawValue: todoItem.priorityLevel)
             priorityLevel = level ?? .level1
             
-            priorityLevel1.backgroundColor = .clear
-            priorityLevel2.backgroundColor = .clear
-            priorityLevel3.backgroundColor = .clear
-            
-            switch level {
-            case .level1:
-                priorityLevel1.backgroundColor = level?.color
-            case .level2:
-                priorityLevel2.backgroundColor = level?.color
-            case .level3:
-                priorityLevel3.backgroundColor = level?.color
-            case .none:
-                break
-            }
+            updateLevelDesign(level: priorityLevel)
         } else {
             deleteButton.isHidden = true
+        }
+    }
+    func updateLevelDesign(level: PriorityLevel) {
+        priorityLevel1.backgroundColor = .clear
+        priorityLevel2.backgroundColor = .clear
+        priorityLevel3.backgroundColor = .clear
+        
+        switch level {
+        case .level1:
+            priorityLevel1.backgroundColor = level.color
+        case .level2:
+            priorityLevel2.backgroundColor = level.color
+        case .level3:
+            priorityLevel3.backgroundColor = level.color
         }
     }
     
@@ -123,22 +124,19 @@ class DetailTodoViewController: UIViewController {
     }
     
     @IBAction func selecteLevel(_ sender: UIButton) {
-        priorityLevel1.backgroundColor = .clear
-        priorityLevel2.backgroundColor = .clear
-        priorityLevel3.backgroundColor = .clear
+        
         switch sender.currentTitle {
         case PriorityLevel.level1.title:
-            sender.backgroundColor = PriorityLevel.level1.color
             priorityLevel = .level1
         case PriorityLevel.level2.title:
-            sender.backgroundColor = PriorityLevel.level2.color
             priorityLevel = .level2
         case PriorityLevel.level3.title:
-            sender.backgroundColor = PriorityLevel.level3.color
             priorityLevel = .level3
         default:
             break
         }
+        
+        updateLevelDesign(level: priorityLevel)
     }
     
     @IBAction func save(_ sender: Any) {

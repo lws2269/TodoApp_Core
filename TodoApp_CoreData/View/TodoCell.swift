@@ -8,7 +8,11 @@
 import UIKit
 
 class TodoCell: UITableViewCell {
-    @IBOutlet weak var priorityLevel: UIView!
+    @IBOutlet weak var priorityLevel: UIView! {
+        didSet {
+            priorityLevel.layer.cornerRadius = 30 / 2
+        }
+    }
     @IBOutlet weak var topTitle: UILabel!
     @IBOutlet weak var bottomDate: UILabel!
     

@@ -21,6 +21,7 @@
 		543F3BAE294D661600218EB8 /* TodoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 543F3BAC294D661600218EB8 /* TodoCell.xib */; };
 		543F3BB1294D683D00218EB8 /* DetailTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543F3BAF294D683D00218EB8 /* DetailTodoViewController.swift */; };
 		543F3BB2294D683D00218EB8 /* DetailTodoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 543F3BB0294D683D00218EB8 /* DetailTodoViewController.xib */; };
+		54C166F32950AA4B0008ADBF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C166F22950AA4B0008ADBF /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		543F3BAC294D661600218EB8 /* TodoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoCell.xib; sourceTree = "<group>"; };
 		543F3BAF294D683D00218EB8 /* DetailTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTodoViewController.swift; sourceTree = "<group>"; };
 		543F3BB0294D683D00218EB8 /* DetailTodoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTodoViewController.xib; sourceTree = "<group>"; };
+		54C166F22950AA4B0008ADBF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				543F3BAC294D661600218EB8 /* TodoCell.xib */,
 				543F3B86294CA2FB00218EB8 /* LaunchScreen.storyboard */,
 				543F3BB0294D683D00218EB8 /* DetailTodoViewController.xib */,
+				54C166F22950AA4B0008ADBF /* CoreDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				543F3B83294CA2FA00218EB8 /* TodoApp_CoreData.xcdatamodeld in Sources */,
 				543F3BAD294D661600218EB8 /* TodoCell.swift in Sources */,
 				543F3B7B294CA2FA00218EB8 /* SceneDelegate.swift in Sources */,
+				54C166F32950AA4B0008ADBF /* CoreDataManager.swift in Sources */,
 				543F3BB1294D683D00218EB8 /* DetailTodoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

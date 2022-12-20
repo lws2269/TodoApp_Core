@@ -18,19 +18,6 @@ class ViewController: UIViewController {
         }
     }
     var todoList = [TodoList]()
-    let appdelegate = (UIApplication.shared.delegate as! AppDelegate)
-    
-    func fetchData() {
-        let fetchRequest = TodoList.fetchRequest()
-        let context = appdelegate.persistentContainer.viewContext
-        
-        do{
-            todoList = try context.fetch(fetchRequest)
-        } catch {
-            print(error)
-        }
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +26,13 @@ class ViewController: UIViewController {
         self.addRightBarButtonItem()
         self.fetchData()
         self.tableView.reloadData()
+    }
+    
+    func fetchData() {
+        guard let hasList = CoreDataManager.shared.fetchData(entity: TodoList.self) else {
+            return
+        }
+        self.todoList = hasList
     }
     
     private func addRightBarButtonItem() {
